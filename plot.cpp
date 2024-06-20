@@ -28,6 +28,8 @@ class Plot {
 			}
 		}
 		void run2() {
+			int vec_pos_x_ind = 1;
+			int vec_pos_y_ind = 1;
 		do {
 			for (int py = height; py >= -height; py--) {
 				for (int px = -width; px <= width; px++) {
@@ -44,7 +46,7 @@ class Plot {
 							
 							// Calculate local coordinates within the vector
 							int local_x = px - vec_x;
-							int local_y = py - vec_y;
+							int local_y = (vec_list[i].size() - 1) - (py - vec_y);
 
 							// Check the value at the local coordinates
 							if (vec_list[i][local_y][local_x] == 1) {
@@ -62,9 +64,15 @@ class Plot {
 				}
 				cout << "| " << py << endl;
 			}
+			// for(int i = 0; i < vec_pos.size(); i++){
+			// 	if(vec_pos[i][0]>width) vec_pos_x_ind = -1;
+			// 	else if(vec_pos[i][0]<-width) vec_pos_x_ind = 1;
+			// }
 			for(int i = 0; i < vec_pos.size(); i++){
-						vec_pos[i].assign({vec_pos[i][0]+1, vec_pos[i][1]});
-					}
+				if(vec_pos[i][0]>width) vec_pos[i].assign({-width, vec_pos[i][1]});
+			}
+			for(int i = 0; i < vec_pos.size(); i++) vec_pos[i].assign({vec_pos[i][0]+vec_pos_x_ind, vec_pos[i][1]});
+			
 			usleep(sleep_time * 10000);
 			system("clear");
 		} while (loop == 1);
