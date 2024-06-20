@@ -14,11 +14,13 @@ class Plot {
 			sleep_time = st;
 		}
 		void addVec(vector<vector<int>> vec, vector<int> pos){
+		//	try {
 		//	vec_list.insert(vec_list.end(), vec.begin(), vec.end());
-		//	vec_pos.insert(vec_pos.end(), pos.begin(), pos.end());
+			vec_pos.insert(vec_pos.end(), pos.begin(), pos.end());
 			vec_list.push_back(vec);
-			vec_pos.push_back(pos);
-		}
+		//	vec_pos.push_back(pos.at(pos.begin()));
+		//} catch{}}
+}
 		void showVec(){
 			for(int i=0;i<vec_list.size();i++){
 				for(int j=0;j<vec_list.at(i).size();j++){
@@ -38,7 +40,7 @@ class Plot {
 						for(int i=0;i<vec_list.size();i++){
 							for(int j=0;j<vec_list.at(i).size();j++){
 								for(int k=0;k<vec_list.at(i).at(j).size();k++){
-									if(px==vec_pos.at(i)){
+									if(px==vec_pos.at(i) && py==vec_pos.at(i)){
 										if(vec_list.at(i).at(j).at(k)==1){
 											pointed = 1;	
 										}
